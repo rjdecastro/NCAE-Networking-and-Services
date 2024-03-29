@@ -1,4 +1,4 @@
-Network setup
+![image](https://github.com/rjdecastro/NCAE-Networking-and-Services/assets/144396480/59debd67-3ae9-4640-a21e-7ee77a6d037e)Network setup
 ---
 Kali file location:
 /etc/network/interfaces
@@ -59,7 +59,7 @@ Site commands:
 
 ---
 
-CentOS Firewall setup
+CentOS Firewall setup (via firewall-cmd)
 ---
 
 firewall-cmd is the essential command for firewall setup
@@ -92,6 +92,41 @@ Firewall-cmd --reload
 
 *Note: After port-forwarding a connection for an ssh service that had previously established a connection with the router for the service, there will be a fingerprint/key mismatch, and therefore the fingerprint in known_hosts will need to be removed and re-established.*
 
+
+CentOS Firewall setup (via iptables)
+---
+
+	iptables ...
+To flush a ruleset:
+
+	... -F [chain]	← If no chain specified, all rules will be flusheed
+
+To specify which table to modify:
+
+	... -t [table] (e.g. nat)
+
+To specify which chain we are appending a rule to:
+
+	... -A [chain] (e.g. PREROUTING or POSTROUTING)
+ *Make sure to preroute and postroute separately*
+
+To specify a destination:
+
+	... -d [target.dest.ip.addr[-target.dest.ip.range]]
+
+To specify a protocol:
+
+ 	... -p [tcp/udp] 
+
+To specify the destination port:
+
+  	... -dport [port]	← Common ports: 53 = DNS, 80 = HTTP, 443 = HTTPS
+
+To specify redirection on where to jump if packet matches (necessary):
+
+	... -j [DNAT/SNAT] --to-destination [target.dest.ip.addr]:[port]
+ 	... -j [action] (e.g. MASQUERADE)
+  	... -j [ACCEPT/DROP/REJECT]	← Drop silently discards the packet without sending the client further messages, whereas reject sends error messages
 
 SSH Setup
 ---
