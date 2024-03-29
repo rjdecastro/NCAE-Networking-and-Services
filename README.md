@@ -1,4 +1,4 @@
-![image](https://github.com/rjdecastro/NCAE-Networking-and-Services/assets/144396480/59debd67-3ae9-4640-a21e-7ee77a6d037e)Network setup
+Network setup
 ---
 Kali file location:
 /etc/network/interfaces
