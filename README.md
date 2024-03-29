@@ -3,15 +3,11 @@ Network setup
 Kali file location:
 /etc/network/interfaces
 
-auto eth0
-
-iface eth0 inet [dhcp/static]
-
-address [address]
-
-netmask [netmask]
-
-gateway [gateway]
+	auto eth0
+ 	iface eth0 inet [dhcp/static]
+		address [address]
+		netmask [netmask]
+		gateway [gateway]
 
 “systemctl restart networking”
 
@@ -20,15 +16,11 @@ CentOS file location: *(uses Vim)*
 
 /etc/sysconfig/network-scripts/ifcfg-[interface type]
 
-BOOTPROTO=static  ← Change from DHCP/Dynamic
-
-ONBOOT=yes
-
-IPADDR=[ip address]
-
-NETMASK=[subnet]
-
-ZONE=[zone]  ← If assigning firewall zones
+	BOOTPROTO=static		← Change from DHCP/Dynamic
+	ONBOOT=yes
+	IPADDR=[ip address]
+	NETMASK=[subnet]
+	ZONE=[zone]		← If assigning firewall zones
 
 “systemctl restart network”
 
@@ -38,24 +30,16 @@ Ubuntu:
 
 /etc/netplan/01-network-manager-all.yaml
 
-(aligned) ethernets:
-
-(tabbed) [interface type]: (e.g. “ens18:”)
-
-(tabbed) addresses:
-
-(tabbed) - [ip address/subnet]
-
-*Do not forget the dash before ip
-
-(tabbed) gateway4: [gateway]
-
-
-*If adding gateway during this step
+	ethernets:
+	  [interface type]: (e.g. “ens18:”)
+	    addresses:
+  	     - [ip address/[CIDR subnet]]
+	    gateway4: [gateway IP] 
+*Do not forget the dash before ip*
 
 “netplan apply”
 
-*Make sure to restart a web service if one is up via this connection
+*Make sure to restart a web service if one is up via this connection*
 
 ---
 
@@ -67,9 +51,11 @@ Web doc root: /etc/apache2/sites-available/000-default.conf
 
 Normally web config in /var/www/
 
-*Make sure to start and enable the service
+*Make sure to start and enable the service*
 
-Site commands: “curl” & “wget” ←*wget copies index file into the local system
+Site commands:
+
+	“curl” & “wget” 	← *wget copies index file into the local system
 
 ---
 
@@ -83,25 +69,24 @@ All following commands follow a --this-commands=input syntax
 Commands:
 
 ---
---list-all-zones
-
---list-all --zone=[zone]
+	--list-all-zones
+	--list-all --zone=[zone]
 
 You can modify an interface’s zone by either going into the interface’s config file and adding a ZONE=[zone] or:
 
---change-interface=[interface] --zone=[zone] --permanent
+	--change-interface=[interface] --zone=[zone] --permanent
 
 To forward traffic (meaning to allow traffic to be sent from the router, which is receiving data, to the receiving local machine on the router’s network):
 
---zone=[zone] --add-foward-port=port=[port]:proto=[tcp/udp]:toport=[port]:toaddr[receiving ip] --permanent
+	--zone=[zone] --add-foward-port=port=[port]:proto=[tcp/udp]:toport=[port]:toaddr[receiving ip] --permanent
 
 To add a service:
 
---zone=[zone] --add-service=[service] --permanent
+	--zone=[zone] --add-service=[service] --permanent
 
 To remove a service:
 
---zone=[zone] --remove-service=[service] --permanent 
+	--zone=[zone] --remove-service=[service] --permanent 
 
 Firewall-cmd --reload
 
@@ -121,13 +106,11 @@ Host-side file for the public key that allows a user with the matching private k
 
 In order to securely copy a key from a server:
 
-scp user@targetip:[server/target/file/location] [send/to/local/here]
+	scp user@targetip:[server/target/file/location] [send/to/local/here]
 
 In order to copy a public ssh key:
 
-ssh-copy-id -i [ssh_key] user@targetip
-
-
+	ssh-copy-id -i [ssh_key] user@targetip
 
 SSH
 ---
@@ -142,19 +125,18 @@ Server-side for allowed key pairs from clients: /home/[user]/.ssh/authorized_key
 ---
 Commands:
 
-ssh-keygen [-t [type] to specify type] [key type] [-f [location] to specify location]
-
-scp [user]@[host-ip]:[key-from-location] [desired-key-to-location]
+	ssh-keygen [-t [type] to specify type] [key type] [-f [location] to specify location]
+	scp [user]@[host-ip]:[key-from-location] [desired-key-to-location]
 
 Permissions remote-side must be correct for this to work
 
 This is for copying a key from the host and onto the client
 
-ssh -i [private-key-file-path] [user]@[host-ip]
+	ssh -i [private-key-file-path] [user]@[host-ip]
 
 This means to ssh without a password, meaning to use the private key to authenticate instead
 
-ssh-copy-id [-i [install]] [key-file-location] [user@host-ip destination]
+	ssh-copy-id [-i [install]] [key-file-location] [user@host-ip destination]
 
 Take a key generated on the client and install it onto the server
 
