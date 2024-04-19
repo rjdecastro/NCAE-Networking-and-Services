@@ -160,10 +160,20 @@ Server-side for allowed key pairs from clients: /home/[user]/.ssh/authorized_key
 ---
 Commands:
 
-	ssh-keygen [-t [type] to specify type] [key type] [-f [location] to specify location]
-	scp [user]@[host-ip]:[key-from-location] [desired-key-to-location]
+	ssh-keygen...
+ To specify key type: (e.g. RSA, ESA, ECDSA)
+ 
+ 	... -t [type]
+To specify file location:
 
-Permissions remote-side must be correct for this to work
+   	... -f [file location]
+
+To securely copy a private or public from a host:
+
+	scp [your-user-on-remote-host-machine]@[host-ip]:[key-from-location] [desired-key-to-location]
+ (e.g. "scp username@10.10.10.10:/home/user/path/copying/from/on-remote-host /home/user/path/copying/to/on-client)
+ 
+*Permissions remote-side must be correct for this to work!
 
 This is for copying a key from the host and onto the client
 
@@ -178,9 +188,11 @@ Take a key generated on the client and install it onto the server
 Known_hosts is important for fingerprints and re-establishing a connection that was previously made.
 
 
-Passwordless authentication is when the client has the private key rather than the public key. It is important that the permissions are correct for this to work properly.
+Note:
 
-The permissions for ssh and key files should be 700 and be owned by the user, not root.
+- Passwordless authentication is when the client has the private key rather than the public key. It is important that the permissions are correct for this to work properly.
+
+- The permissions for ssh and key files should be 700 and be owned by the USER, not root.
 
 
 DNS
