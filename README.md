@@ -168,24 +168,21 @@ To specify file location:
 
    	... -f [file location]
 
-To securely copy a private or public from a host:
+To securely copy a private or public from a host and onto the client:
 
 	scp [your-user-on-remote-host-machine]@[host-ip]:[key-from-location] [desired-key-to-location]
  (e.g. "scp username@10.10.10.10:/home/user/path/copying/from/on-remote-host /home/user/path/copying/to/on-client)
  
 *Permissions remote-side must be correct for this to work!
 
-This is for copying a key from the host and onto the client
+To ssh without a password, meaning to use the private key to authenticate instead:
 
 	ssh -i [private-key-file-path] [user]@[host-ip]
+To take a key generated on the client and install it onto the server remotely:
 
-This means to ssh without a password, meaning to use the private key to authenticate instead
-
-	ssh-copy-id [-i [install]] [key-file-location] [user@host-ip destination]
-
-Take a key generated on the client and install it onto the server
-
-Known_hosts is important for fingerprints and re-establishing a connection that was previously made.
+ 	ssh-copy-id [-i [install]] [key-file-location] [user@host-ip destination]
+  
+*Known_hosts is important for fingerprints and re-establishing a connection that was previously made.
 
 
 Note:
