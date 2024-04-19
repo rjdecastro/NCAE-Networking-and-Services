@@ -1,5 +1,11 @@
 Network setup
 ---
+There are 4 things required for a functional network interface:
+- IP
+- Subnet
+- Gateway
+- DNS
+---
 Kali file location:
 /etc/network/interfaces
 
