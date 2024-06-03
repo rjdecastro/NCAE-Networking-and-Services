@@ -42,7 +42,7 @@ Ubuntu:
   	     - [ip address/[CIDR subnet]]
 	    gateway4: [gateway IP]
             nameservers:
-       	      addresses: [8.8.8.8, 8.8.4.4] # example DNS server IP addresses
+       	     addresses: [dns.server.ip.1, dns.server.ip.2]
 
 *Do not forget the dash before ip*
 
