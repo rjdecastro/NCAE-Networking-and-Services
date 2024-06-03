@@ -40,7 +40,10 @@ Ubuntu:
 	  [interface type]: (e.g. “ens18:”)
 	    addresses:
   	     - [ip address/[CIDR subnet]]
-	    gateway4: [gateway IP] 
+	    gateway4: [gateway IP]
+            nameservers:
+       	      addresses: [8.8.8.8, 8.8.4.4] # example DNS server IP addresses
+
 *Do not forget the dash before ip*
 
 “netplan apply”
