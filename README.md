@@ -41,8 +41,8 @@ Ubuntu:
 	    addresses:
   	      - [ip address/[CIDR subnet]]
 	    routes:
-     		-to:
-       		 via: [gateway ip]
+     	-to:
+       	 via: [gateway ip]
         nameservers:
        	addresses:
 	  	- dns.server.ip.1
