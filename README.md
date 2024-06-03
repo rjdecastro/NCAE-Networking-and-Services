@@ -39,10 +39,12 @@ Ubuntu:
 	ethernets:
 	  [interface type]: (e.g. “ens18:”)
 	    addresses:
-  	     - [ip address/[CIDR subnet]]
+  	      - [ip address/[CIDR subnet]]
 	    gateway4: [gateway IP]
             nameservers:
-       	     addresses: [dns.server.ip.1, dns.server.ip.2]
+       	     addresses:
+	     	- dns.server.ip.1
+       		- dns.server.ip.2
 
 *Do not forget the dash before ip*
 
