@@ -43,8 +43,8 @@ Ubuntu:
 	    gateway4: [gateway IP]
         nameservers:
        	addresses:
-		     	- dns.server.ip.1
-       		- dns.server.ip.2
+	  	- dns.server.ip.1
+         	- dns.server.ip.2
 
 *Do not forget the dash before ip*
 
