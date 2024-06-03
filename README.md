@@ -41,10 +41,10 @@ Ubuntu:
 	    addresses:
   	      - [ip address/[CIDR subnet]]
 	    gateway4: [gateway IP]
-            nameservers:
+        nameservers:
        		addresses:
 	     	- dns.server.ip.1
-      	 	- dns.server.ip.2
+       	- dns.server.ip.2
 
 *Do not forget the dash before ip*
 
