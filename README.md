@@ -40,7 +40,9 @@ Ubuntu:
 	  [interface type]: (e.g. “ens18:”)
 	    addresses:
   	      - [ip address/[CIDR subnet]]
-	    gateway4: [gateway IP]
+	    routes:
+     		-to:
+       		 via: [gateway ip]
         nameservers:
        	addresses:
 	  	- dns.server.ip.1
